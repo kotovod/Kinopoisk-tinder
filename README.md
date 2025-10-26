@@ -22,4 +22,4 @@
 https://codepen.io/RobVermeer/pen/japZpY
 
 Автор воркшопа:
-https://tg.me/lilipilia
+https://t.me/lilipilia
