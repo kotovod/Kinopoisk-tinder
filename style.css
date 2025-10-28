@@ -5,9 +5,460 @@
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000000;
   overflow: hidden;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'YS Text', Arial, sans-serif;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.logo span {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 15px;
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+  gap: 15px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* Стили для кнопки сброса фильтров */
+.reset-filters-button {
+  background-color: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.reset-filters-button:hover {
+  background-color: #444;
+}
+
+.reset-filters-button:active {
+  background-color: #222;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.filter-group label {
+  color: #ffffff;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.filter-select {
+  background-color: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #ff6d00;
+}
+
+.filter-button {
+  background-color: #ff6d00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.filter-button:hover {
+  background-color: #ff8c00;
+}
+
+.filter-button:active {
+  background-color: #e56200;
+}
+
+/* Стили для индикатора пользователя и кнопки переключения */
+.user-indicator {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.switch-user-button {
+  position: absolute;
+  top: 15px;
+  right: 150px;
+  background-color: #ff6d00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.switch-user-button:hover {
+  background-color: #ff8c00;
+}
+
+/* Стили для контейнера совпадений */
+.matches-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.matches-title {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.matches-counter {
+  color: #ff6d00;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #333;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff6d00;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.perfect-match {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(255, 109, 0, 0.2);
+  border-radius: 5px;
+  display: none;
+}
+
+.perfect-match.active {
+  display: block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 109, 0, 0.2);
+  }
+  50% {
+    background-color: rgba(255, 109, 0, 0.4);
+  }
+  100% {
+    background-color: rgba(255, 109, 0, 0.2);
+  }
+}
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.match-item {
+  display: flex;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.match-item img {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.match-info {
+  padding: 10px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.match-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.match-weight {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ff6d00;
+  font-weight: bold;
+}
+
+.superlike-indicator {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #ffcc00;
+  background-color: rgba(255, 204, 0, 0.1);
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.close-matches-button {
+  display: block;
+  margin: 20px auto 0;
+  background-color: #ff6d00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.close-matches-button:hover {
+  background-color: #ff8c00;
+}
+
+/* Стили для режима монетки */
+.coin-flip-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.coin {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  animation: flip 2s forwards;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(1800deg);
+  }
+}
+
+.coin-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  backface-visibility: hidden;
+}
+
+.heads {
+  background-color: #ff6d00;
+  color: #ffffff;
+}
+
+.tails {
+  background-color: #333;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.coin-result {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.coin-movies {
+  display: flex;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.coin-movie {
+  width: 200px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.coin-movie img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.coin-movie-info {
+  padding: 10px;
+}
+
+.coin-movie-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.coin-movie-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #ff6d00;
+}
+
+.coin-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.coin-button {
+  background-color: #ff6d00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.coin-button:hover {
+  background-color: #ff8c00;
+}
+
+.coin-button.secondary {
+  background-color: #333;
+}
+
+.coin-button.secondary:hover {
+  background-color: #444;
+}
+
+/* Стили для кнопки копирования списка */
+.copy-list-button {
+  background-color: #333;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin: 10px 0;
+  display: block;
+}
+
+.copy-list-button:hover {
+  background-color: #444;
+}
+
+/* Стили для уведомления о копировании */
+.copy-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff6d00;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  z-index: 9999;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .tinder {
@@ -70,7 +521,7 @@ body {
   width: 90vw;
   max-width: 400px;
   height: 70vh;
-  background: #FFFFFF;
+  background: #1f1f1f;
   padding-bottom: 40px;
   border-radius: 20px;
   overflow: hidden;
@@ -80,7 +531,7 @@ body {
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .moving.tinder--card {
@@ -100,17 +551,40 @@ body {
   font-size: 28px;
   padding: 0 16px;
   pointer-events: none;
-  color: #333;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .tinder--card p {
-  margin-top: 24px;
-  font-size: 18px;
+  margin-top: 12px;
+  font-size: 16px;
   padding: 0 16px;
   pointer-events: none;
-  color: #666;
+  color: #cccccc;
   line-height: 1.4;
+}
+
+.movie-info {
+  font-size: 14px !important;
+  color: #ff6d00 !important;
+  margin-top: 5px !important;
+  font-weight: 500;
+}
+
+.movie-rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  padding: 4px 8px;
+  z-index: 2;
+}
+
+.rating {
+  color: #ff6d00;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .tinder--buttons {
@@ -124,7 +598,7 @@ body {
   line-height: 60px;
   width: 60px;
   border: 0;
-  background: #FFFFFF;
+  background: #1f1f1f;
   display: inline-block;
   margin: 0 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -136,14 +610,47 @@ body {
 }
 
 .tinder--buttons i {
-  font-size: 32px;
+  font-size: 28px;
   vertical-align: middle;
 }
 
-.fa-heart {
-  color: #FF6B6B;
+.fa-thumbs-up {
+  color: #ff6d00;
 }
 
-.fa-remove {
-  color: #A8A8A8;
+.fa-thumbs-down {
+  color: #cccccc;
+}
+
+.fa-star {
+  color: #ffcc00;
+}
+
+#superlike {
+  background-color: #1f1f1f;
+  border: 2px solid #ffcc00;
+}
+
+#superlike:hover {
+  background-color: rgba(255, 204, 0, 0.1);
+}
+
+/* Стили для индикатора суперлайка на карточке */
+.superliked {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 204, 0, 0.7);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.superliked i {
+  color: #1f1f1f;
+  font-size: 16px;
 }

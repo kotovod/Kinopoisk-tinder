@@ -3,48 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinder Swipe Cards</title>
+  <title>КиноПоиск Рекомендации</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="tinder">
+    <div class="header">
+      <div class="logo">
+        <img src="https://static.beeline.ru/upload/dpcupload/contents/291/icons/Kinopoisk-icon.png" alt="КиноПоиск">
+        <span>КиноПоиск</span>
+      </div>
+    </div>
+    
+    <div class="filters">
+      <div class="filter-group">
+        <label for="mood">Настроение:</label>
+        <select id="mood" class="filter-select">
+          <option value="all">Все</option>
+          <option value="fun">Веселое</option>
+          <option value="sad">Грустное</option>
+          <option value="romantic">Романтическое</option>
+          <option value="exciting">Захватывающее</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="genre">Жанр:</label>
+        <select id="genre" class="filter-select">
+          <option value="all">Все</option>
+          <option value="action">Боевик</option>
+          <option value="comedy">Комедия</option>
+          <option value="drama">Драма</option>
+          <option value="fantasy">Фэнтези</option>
+          <option value="sci-fi">Фантастика</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="duration">Длительность:</label>
+        <select id="duration" class="filter-select">
+          <option value="all">Все</option>
+          <option value="short">Короткий (до 100 мин)</option>
+          <option value="medium">Средний (100-140 мин)</option>
+          <option value="long">Длинный (более 140 мин)</option>
+        </select>
+      </div>
+      
+      <button id="apply-filters" class="filter-button">Применить</button>
+    </div>
     <div class="tinder--status">
       <i class="fa fa-remove"></i>
       <i class="fa fa-heart"></i>
     </div>
 
     <div class="tinder--cards">
-      <div class="tinder--card">
-        <img src="https://loremflickr.com/600/300/nature">
-        <h3>Scenic View 1</h3>
-        <p>A beautiful landscape showcasing nature's splendor.</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://loremflickr.com/600/300/mountains">
-        <h3>Scenic View 2</h3>
-        <p>Majestic mountains under a clear sky.</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://loremflickr.com/600/300/ocean">
-        <h3>Scenic View 3</h3>
-        <p>Serene ocean waves crashing on the shore.</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://loremflickr.com/600/300/forest">
-        <h3>Scenic View 4</h3>
-        <p>Lush green forests in autumn colors.</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://loremflickr.com/600/300/desert">
-        <h3>Scenic View 5</h3>
-        <p>Stunning desert dunes at sunset.</p>
-      </div>
+      <!-- Карточки будут добавлены динамически через JavaScript -->
     </div>
 
     <div class="tinder--buttons">
-      <button id="nope"><i class="fa fa-remove"></i></button>
-      <button id="love"><i class="fa fa-heart"></i></button>
+      <button id="nope"><i class="fa fa-thumbs-down"></i></button>
+      <button id="love"><i class="fa fa-thumbs-up"></i></button>
+      <button id="superlike"><i class="fa fa-star"></i></button>
     </div>
   </div>
 
